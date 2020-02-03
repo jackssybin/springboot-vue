@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weiziplus.springboot.mapper.wx.WxDictMapper">
+  <resultMap id="BaseResultMap" type="com.weiziplus.springboot.models.wx.WxDict">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dic_name" jdbcType="VARCHAR" property="dicName" />
+    <result column="dic_type" jdbcType="VARCHAR" property="dicType" />
+    <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dic_name, dic_type, unionid, user_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wx_dict
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="getList"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wx_dict
+    where 1=1
+    <if test="null != id and 0 != id">
+      and id = #{id,jdbcType=BIGINT}
+    </if>
+    <if test="null != userId and '' != userId">
+      and user_id = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="null != unionid and '' != unionid">
+      and unionid = #{unionid,jdbcType=VARCHAR}
+    </if>
+    <if test="null != dicType and '' != dicType">
+      and dic_type = #{dicType,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wx_dict
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.weiziplus.springboot.models.wx.WxDict">
+    insert into wx_dict (id, dic_name, dic_type, 
+      unionid, user_id, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{dicName,jdbcType=VARCHAR}, #{dicType,jdbcType=VARCHAR}, 
+      #{unionid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weiziplus.springboot.models.wx.WxDict">
+    insert into wx_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dicName != null">
+        dic_name,
+      </if>
+      <if test="dicType != null">
+        dic_type,
+      </if>
+      <if test="unionid != null">
+        unionid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dicName != null">
+        #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicType != null">
+        #{dicType,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weiziplus.springboot.models.wx.WxDict">
+    update wx_dict
+    <set>
+      <if test="dicName != null">
+        dic_name = #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicType != null">
+        dic_type = #{dicType,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        unionid = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weiziplus.springboot.models.wx.WxDict">
+    update wx_dict
+    set dic_name = #{dicName,jdbcType=VARCHAR},
+      dic_type = #{dicType,jdbcType=VARCHAR},
+      unionid = #{unionid,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

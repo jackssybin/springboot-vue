@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weiziplus.springboot.mapper.wx.WxDictDataMapper">
+  <resultMap id="BaseResultMap" type="com.weiziplus.springboot.models.wx.WxDictData">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="pron" jdbcType="VARCHAR" property="pron" />
+    <result column="uk_pron" jdbcType="VARCHAR" property="ukPron" />
+    <result column="audio" jdbcType="VARCHAR" property="audio" />
+    <result column="uk_audio" jdbcType="VARCHAR" property="ukAudio" />
+    <result column="definition" jdbcType="VARCHAR" property="definition" />
+    <result column="example" jdbcType="VARCHAR" property="example" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content, pron, uk_pron, audio, uk_audio, definition, example, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wx_dict_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="getWxDictDataByContent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wx_dict_data
+    where 1=1
+    <if test="null != id and 0 != id">
+      and id = #{id,jdbcType=BIGINT}
+    </if>
+    <if test="null != content and '' != content">
+      and content = #{content,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wx_dict_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.weiziplus.springboot.models.wx.WxDictData">
+    insert into wx_dict_data (id, content, pron, 
+      uk_pron, audio, uk_audio, 
+      definition, example, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, #{pron,jdbcType=VARCHAR}, 
+      #{ukPron,jdbcType=VARCHAR}, #{audio,jdbcType=VARCHAR}, #{ukAudio,jdbcType=VARCHAR}, 
+      #{definition,jdbcType=VARCHAR}, #{example,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.weiziplus.springboot.models.wx.WxDictData">
+    insert into wx_dict_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="pron != null">
+        pron,
+      </if>
+      <if test="ukPron != null">
+        uk_pron,
+      </if>
+      <if test="audio != null">
+        audio,
+      </if>
+      <if test="ukAudio != null">
+        uk_audio,
+      </if>
+      <if test="definition != null">
+        definition,
+      </if>
+      <if test="example != null">
+        example,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="pron != null">
+        #{pron,jdbcType=VARCHAR},
+      </if>
+      <if test="ukPron != null">
+        #{ukPron,jdbcType=VARCHAR},
+      </if>
+      <if test="audio != null">
+        #{audio,jdbcType=VARCHAR},
+      </if>
+      <if test="ukAudio != null">
+        #{ukAudio,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null">
+        #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="example != null">
+        #{example,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weiziplus.springboot.models.wx.WxDictData">
+    update wx_dict_data
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="pron != null">
+        pron = #{pron,jdbcType=VARCHAR},
+      </if>
+      <if test="ukPron != null">
+        uk_pron = #{ukPron,jdbcType=VARCHAR},
+      </if>
+      <if test="audio != null">
+        audio = #{audio,jdbcType=VARCHAR},
+      </if>
+      <if test="ukAudio != null">
+        uk_audio = #{ukAudio,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null">
+        definition = #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="example != null">
+        example = #{example,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weiziplus.springboot.models.wx.WxDictData">
+    update wx_dict_data
+    set content = #{content,jdbcType=VARCHAR},
+      pron = #{pron,jdbcType=VARCHAR},
+      uk_pron = #{ukPron,jdbcType=VARCHAR},
+      audio = #{audio,jdbcType=VARCHAR},
+      uk_audio = #{ukAudio,jdbcType=VARCHAR},
+      definition = #{definition,jdbcType=VARCHAR},
+      example = #{example,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
