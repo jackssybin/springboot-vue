@@ -20,7 +20,8 @@ public class WxDictService {
 
     public ResultUtils addDict(WxDict data)
     {
-        return ResultUtils.success(wxDictMapper.insert(data));
+        wxDictMapper.insert(data);
+        return ResultUtils.success(data.getId());
     }
 
 

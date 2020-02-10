@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.weiziplus.springboot.models.wx.WxUser">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
-    <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
@@ -14,7 +14,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, phone_num, unionid, nick_name, avatar_url, gender, province, city, country, create_time
+    id, phone_num, openid, nick_name, avatar_url, gender, province, city, country, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
@@ -31,13 +31,13 @@
       and id = #{id,jdbcType=BIGINT}
     </if>
     <if test="null != phoneNum and '' != phoneNum">
-      and phone_num = #{phoneNum,jdbcType=BIGINT}
+      and phone_num = #{phoneNum,jdbcType=VARCHAR}
     </if>
-    <if test="null != unionid and '' != unionid">
-      and unionid = #{unionid,jdbcType=BIGINT}
+    <if test="null != openid and '' != openid">
+      and openid = #{openid,jdbcType=VARCHAR}
     </if>
     <if test="null != nickName and '' != nickName">
-      and nick_name = #{nickName,jdbcType=BIGINT}
+      and nick_name = #{nickName,jdbcType=VARCHAR}
     </if>
   </select>
 
@@ -48,11 +48,11 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.weiziplus.springboot.models.wx.WxUser">
-    insert into wx_user (id, phone_num, unionid,
+    insert into wx_user (id, phone_num, openid,
       nick_name, avatar_url, gender,
       province, city, country,
       create_time)
-    values (#{id,jdbcType=BIGINT}, #{phoneNum,jdbcType=VARCHAR}, #{unionid,jdbcType=VARCHAR},
+    values (#{id,jdbcType=BIGINT}, #{phoneNum,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR},
       #{nickName,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
       #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP})
@@ -66,8 +66,8 @@
       <if test="phoneNum != null">
         phone_num,
       </if>
-      <if test="unionid != null">
-        unionid,
+      <if test="openid != null">
+        openid,
       </if>
       <if test="nickName != null">
         nick_name,
@@ -98,8 +98,8 @@
       <if test="phoneNum != null">
         #{phoneNum,jdbcType=VARCHAR},
       </if>
-      <if test="unionid != null">
-        #{unionid,jdbcType=VARCHAR},
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
       </if>
       <if test="nickName != null">
         #{nickName,jdbcType=VARCHAR},
@@ -130,8 +130,8 @@
       <if test="phoneNum != null">
         phone_num = #{phoneNum,jdbcType=VARCHAR},
       </if>
-      <if test="unionid != null">
-        unionid = #{unionid,jdbcType=VARCHAR},
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
       </if>
       <if test="nickName != null">
         nick_name = #{nickName,jdbcType=VARCHAR},
@@ -160,7 +160,7 @@
   <update id="updateByPrimaryKey" parameterType="com.weiziplus.springboot.models.wx.WxUser">
     update wx_user
     set phone_num = #{phoneNum,jdbcType=VARCHAR},
-      unionid = #{unionid,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},

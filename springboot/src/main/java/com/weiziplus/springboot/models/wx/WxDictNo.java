@@ -33,8 +33,8 @@ public class WxDictNo implements Serializable {
      * 用户id
      */
     @ApiModelProperty("用户id")
-    @Column("user_id")
-    private String userId;
+    @Column("openid")
+    private String openid;
 
     /**
      * 单词id

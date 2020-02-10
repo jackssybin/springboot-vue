@@ -47,8 +47,8 @@ public class WxDict implements Serializable {
      * 创建
      */
     @ApiModelProperty("创建")
-    @Column("unionid")
-    private String unionid;
+    @Column("openid")
+    private String openid;
 
     /**
      * 创建

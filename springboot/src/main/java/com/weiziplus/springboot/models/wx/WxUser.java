@@ -37,9 +37,9 @@ public class WxUser implements Serializable {
     /**
      * wx_id
      */
-    @ApiModelProperty("wx_id")
-    @Column("unionid")
-    private String unionid;
+    @ApiModelProperty("openid")
+    @Column("openid")
+    private String openid;
 
     /**
      * nickName

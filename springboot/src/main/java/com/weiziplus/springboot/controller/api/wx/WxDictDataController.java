@@ -1,11 +1,9 @@
 package com.weiziplus.springboot.controller.api.wx;
 
-import com.weiziplus.springboot.constant.Constant;
 import com.weiziplus.springboot.interceptor.AuthTokenIgnore;
 import com.weiziplus.springboot.models.dto.WxDictRefDto;
 import com.weiziplus.springboot.models.vo.WxDictDataVo;
 import com.weiziplus.springboot.models.wx.WxDict;
-import com.weiziplus.springboot.models.wx.WxDictData;
 import com.weiziplus.springboot.models.wx.WxDictRef;
 import com.weiziplus.springboot.service.wx.WxDictDataService;
 import com.weiziplus.springboot.service.wx.WxDictRefService;

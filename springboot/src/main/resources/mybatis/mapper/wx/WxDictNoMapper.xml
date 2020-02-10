@@ -3,12 +3,12 @@
 <mapper namespace="com.weiziplus.springboot.mapper.wx.WxDictNoMapper">
   <resultMap id="BaseResultMap" type="com.weiziplus.springboot.models.wx.WxDictNo">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="data_id" jdbcType="BIGINT" property="dataId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, data_id, create_time
+    id, openid, data_id, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -21,9 +21,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.weiziplus.springboot.models.wx.WxDictNo">
-    insert into wx_dict_no (id, user_id, data_id, 
+    insert into wx_dict_no (id, openid, data_id,
       create_time)
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{dataId,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, #{dataId,jdbcType=BIGINT},
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.weiziplus.springboot.models.wx.WxDictNo">
@@ -32,8 +32,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="openid != null">
+        openid,
       </if>
       <if test="dataId != null">
         data_id,
@@ -46,8 +46,8 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
       </if>
       <if test="dataId != null">
         #{dataId,jdbcType=BIGINT},
@@ -60,8 +60,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.weiziplus.springboot.models.wx.WxDictNo">
     update wx_dict_no
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=VARCHAR},
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
       </if>
       <if test="dataId != null">
         data_id = #{dataId,jdbcType=BIGINT},
@@ -74,7 +74,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.weiziplus.springboot.models.wx.WxDictNo">
     update wx_dict_no
-    set user_id = #{userId,jdbcType=VARCHAR},
+    set openid = #{openid,jdbcType=VARCHAR},
       data_id = #{dataId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
