@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weiziplus.springboot.mapper.wx.WxTestScoreMapper">
+  <resultMap id="BaseResultMap" type="com.weiziplus.springboot.models.wx.WxTestScore">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dic_id" jdbcType="BIGINT" property="dicId" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="batch_time" jdbcType="VARCHAR" property="batchTime" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dic_id, openid, batch_time, score, answer, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wx_test_score
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wx_test_score
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.weiziplus.springboot.models.wx.WxTestScore">
+    insert into wx_test_score (id, dic_id, openid, 
+      batch_time, score, answer, 
+      remark, create_time)
+    values (#{id,jdbcType=BIGINT}, #{dicId,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, 
+      #{batchTime,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{answer,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.weiziplus.springboot.models.wx.WxTestScore">
+    insert into wx_test_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dicId != null">
+        dic_id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="batchTime != null">
+        batch_time,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dicId != null">
+        #{dicId,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="batchTime != null">
+        #{batchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weiziplus.springboot.models.wx.WxTestScore">
+    update wx_test_score
+    <set>
+      <if test="dicId != null">
+        dic_id = #{dicId,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="batchTime != null">
+        batch_time = #{batchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weiziplus.springboot.models.wx.WxTestScore">
+    update wx_test_score
+    set dic_id = #{dicId,jdbcType=BIGINT},
+      openid = #{openid,jdbcType=VARCHAR},
+      batch_time = #{batchTime,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      answer = #{answer,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

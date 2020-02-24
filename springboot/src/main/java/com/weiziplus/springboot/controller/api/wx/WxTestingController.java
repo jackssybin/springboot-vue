@@ -2,6 +2,7 @@ package com.weiziplus.springboot.controller.api.wx;
 
 import com.weiziplus.springboot.interceptor.AuthTokenIgnore;
 import com.weiziplus.springboot.models.wx.WxDict;
+import com.weiziplus.springboot.models.wx.WxTestQuestion;
 import com.weiziplus.springboot.service.wx.WxDictDataService;
 import com.weiziplus.springboot.service.wx.WxDictRefService;
 import com.weiziplus.springboot.service.wx.WxDictService;
@@ -23,8 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/api/wx")
-@Api(tags = "词典接口")
+@RequestMapping("/api/wx/testing")
+@Api(tags = "测验接口")
 @Slf4j
 public class WxTestingController {
 
@@ -38,15 +39,16 @@ public class WxTestingController {
     WxDictRefService wxDictRefService ;
 
 
-    @ApiOperation(value = "新增词典")
-    @PostMapping("/addDict")
+    @ApiOperation(value = "开始测验")
+    @PostMapping("/start")
     @AuthTokenIgnore
-    public ResultUtils addDict(@RequestBody WxDict data)
+    public ResultUtils start(@RequestBody WxTestQuestion question)
     {
 
-        log.info("addDict:{}",data);
-        data.setCreateTime(DateUtils.getNowDateTime());
-        data.setDicType("wx");
-        return wxDictService.addDict(data);
+
+
+
+
+        return null;
     }
 }
