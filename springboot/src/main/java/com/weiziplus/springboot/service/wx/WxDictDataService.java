@@ -31,10 +31,11 @@ public class WxDictDataService extends BaseService {
     @Autowired
     WxDictDataMapper wxDictDataMapper;
 
-    private WxTestQuestionService wxTestQuestionService ;
+    @Autowired
+    WxTestQuestionService wxTestQuestionService ;
 
     @Autowired
-    private WxDictRefService wxDictRefService;
+    WxDictRefService wxDictRefService;
 
     @Autowired
     RestTemplate restTemplate ;

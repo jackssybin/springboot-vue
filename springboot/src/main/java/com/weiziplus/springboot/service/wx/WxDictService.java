@@ -26,12 +26,17 @@ public class WxDictService {
     @Autowired
     WxDictMapper wxDictMapper;
 
-
-
     public ResultUtils addDict(WxDict data)
     {
-        wxDictMapper.insert(data);
-        return ResultUtils.success(data.getId());
+        List<WxDict> list = wxDictMapper.getList(data);
+        if(null==list||list.size()==0){
+            wxDictMapper.insert(data);
+            return ResultUtils.success(data.getId());
+        }else{
+            log.info("已经存在相同的词典");
+            return ResultUtils.error("已经存在相同的词典");
+        }
+
     }
 
 

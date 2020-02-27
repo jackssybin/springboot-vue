@@ -28,13 +28,13 @@
     from wx_test_answer
     where 1=1
     <if test="null != id and 0 != id">
-      id = #{id,jdbcType=BIGINT}
+      and id = #{id,jdbcType=BIGINT}
     </if>
     <if test="null != dicId and 0 != dicId">
-      dic_id = #{dicId,jdbcType=BIGINT}
+      and  dic_id = #{dicId,jdbcType=BIGINT}
     </if>
     <if test="questionId != null">
-      question_id = #{questionId,jdbcType=BIGINT}
+      and  question_id = #{questionId,jdbcType=BIGINT}
     </if>
   </select>
 
@@ -43,27 +43,37 @@
     where 1=1
 
     <if test="null != id and 0 != id">
-      id = #{id,jdbcType=BIGINT}
+      and id = #{id,jdbcType=BIGINT}
     </if>
     <if test="null != dicId and 0 != dicId">
-      dic_id = #{dicId,jdbcType=BIGINT}
+      and dic_id = #{dicId,jdbcType=BIGINT}
     </if>
     <if test="questionId != null">
-      question_id = #{questionId,jdbcType=BIGINT}
+      and question_id = #{questionId,jdbcType=BIGINT}
     </if>
   </delete>
 
 
   <delete id="deleteByDicIdAndBatchTime" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer">
     delete from wx_test_answer
-    where id = #{id,jdbcType=BIGINT}
+    where 1=1
+
+    <if test="null != id and 0 != id">
+      and id = #{id,jdbcType=BIGINT}
+    </if>
+    <if test="null != dicId and 0 != dicId">
+      and dic_id = #{dicId,jdbcType=BIGINT}
+    </if>
+    <if test="questionId != null">
+      and question_id = #{questionId,jdbcType=BIGINT}
+    </if>
   </delete>
 
   <insert id="insert" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer">
-    insert into wx_test_answer (id, question_id, openid, 
+    insert into wx_test_answer (id,dic_id, question_id, openid,
       answer, batch_time, create_time
       )
-    values (#{id,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{dicId,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR},
       #{answer,jdbcType=VARCHAR}, #{batchTime,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -72,6 +82,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="dicId != null">
+        dic_id,
       </if>
       <if test="questionId != null">
         question_id,
@@ -93,6 +106,9 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="dicId != null">
+        #{dicId,jdbcType=BIGINT},
+      </if>
       <if test="questionId != null">
         #{questionId,jdbcType=BIGINT},
       </if>
@@ -113,6 +129,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer">
     update wx_test_answer
     <set>
+      <if test="dicId != null">
+        dic_id = #{dicId,jdbcType=BIGINT},
+      </if>
       <if test="questionId != null">
         question_id = #{questionId,jdbcType=BIGINT},
       </if>
@@ -134,6 +153,7 @@
   <update id="updateByPrimaryKey" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer">
     update wx_test_answer
     set question_id = #{questionId,jdbcType=BIGINT},
+      dic_id = #{dicId,jdbcType=BIGINT},
       openid = #{openid,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR},
       batch_time = #{batchTime,jdbcType=VARCHAR},

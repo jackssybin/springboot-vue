@@ -33,6 +33,9 @@
     <if test="null != openid and '' != openid">
       and openid = #{openid,jdbcType=VARCHAR}
     </if>
+    <if test="null != dicName and '' != dicName">
+      and dic_name = #{dicName,jdbcType=VARCHAR}
+    </if>
     <if test="null != dicType and '' != dicType">
       and dic_type = #{dicType,jdbcType=VARCHAR}
     </if>
