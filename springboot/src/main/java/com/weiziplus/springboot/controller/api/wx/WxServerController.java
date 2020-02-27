@@ -36,7 +36,7 @@ public class WxServerController {
     private WxUserService wxUserService;
 
     //code就是小程序从前端传过来的
-    @ApiOperation(value = "新增词典")
+    @ApiOperation(value = "根据code获取openid")
     @RequestMapping("/getWxOpenId")
     @AuthTokenIgnore
     private String getWxOpenId(String code) throws Exception {
@@ -69,7 +69,7 @@ public class WxServerController {
         //result就是包含openid的键值对，返回给小程序前端即可
     }
 
-    @ApiOperation(value = "新增用户")
+    @ApiOperation(value = "新增小程序用户")
     @PostMapping("/addWxUser")
     @AuthTokenIgnore
     public ResultUtils addWxUser(@RequestBody WxUser user)

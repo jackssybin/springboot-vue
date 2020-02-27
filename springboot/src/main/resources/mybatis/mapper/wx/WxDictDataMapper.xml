@@ -37,6 +37,25 @@
     </if>
   </select>
 
+  <select id="getMaxId" resultType="java.lang.Long">
+    select
+    max(id)
+    from wx_dict_data
+  </select>
+
+  <select id="selectByIdList"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wx_dict_data
+    where 1=1
+    <if test="idList != null and idList.size > 0 ">
+      and id in
+      <foreach collection="idList" item ="id" index="i" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from wx_dict_data
     where id = #{id,jdbcType=BIGINT}

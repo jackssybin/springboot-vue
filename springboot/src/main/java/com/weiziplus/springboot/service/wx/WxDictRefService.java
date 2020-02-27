@@ -30,7 +30,13 @@ public class WxDictRefService {
         return ResultUtils.success(wxDictRefMapper.insert(data));
     }
 
-    public ResultUtils<List<WxDictRefDto>> getDictDataByDictId(WxDictRef data) {
+    public List<WxDictRefDto> getDictDataByDictId(Long dicId) {
+        WxDictRef data = new WxDictRef();
+        data.setDicId(dicId);
+        return getDictDataByDictId(data);
+    }
+
+    public List<WxDictRefDto> getDictDataByDictId(WxDictRef data) {
 
         List<WxDictRefDto> result = new ArrayList<>();
         List<WxDictRef> list=wxDictRefMapper.getDictDataByDictId(data);
@@ -41,7 +47,7 @@ public class WxDictRefService {
             dto.setWxDictData(wxDictDataMapper.selectByPrimaryKey(entity.getDataId()));
             result.add(dto);
         }
-        return ResultUtils.success(result);
+        return result;
     }
 
 

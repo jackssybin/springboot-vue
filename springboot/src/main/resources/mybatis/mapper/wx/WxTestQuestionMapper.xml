@@ -24,10 +24,30 @@
     from wx_test_question
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="selectByList" parameterType="com.weiziplus.springboot.models.wx.WxTestQuestion"
+          resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wx_test_question
+    where 1=1
+    <if test="null != dicId and 0 != dicId">
+      and dic_id = #{dicId,jdbcType=BIGINT}
+    </if>
+
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from wx_test_question
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
+  <delete id="deleteByDicId" parameterType="java.lang.Long">
+    delete from wx_test_question
+    where dic_id = #{dicId,jdbcType=BIGINT}
+  </delete>
+
+
   <insert id="insert" parameterType="com.weiziplus.springboot.models.wx.WxTestQuestion">
     insert into wx_test_question (id, dic_id, score, 
       question, choiceA, choiceB, 

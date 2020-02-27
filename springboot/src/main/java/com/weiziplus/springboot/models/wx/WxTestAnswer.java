@@ -30,6 +30,13 @@ public class WxTestAnswer implements Serializable {
     private Long id;
 
     /**
+     * 词典id
+     */
+    @ApiModelProperty("词典id")
+    @Column("dic_id")
+    private Long dicId;
+
+    /**
      * 问题选项
      */
     @ApiModelProperty("问题选项")
@@ -37,9 +44,9 @@ public class WxTestAnswer implements Serializable {
     private Long questionId;
 
     /**
-     * wx_id
+     * openid
      */
-    @ApiModelProperty("wx_id")
+    @ApiModelProperty("openid")
     @Column("openid")
     private String openid;
 

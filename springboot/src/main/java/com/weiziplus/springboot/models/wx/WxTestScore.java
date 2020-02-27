@@ -55,7 +55,7 @@ public class WxTestScore implements Serializable {
      */
     @ApiModelProperty("分数")
     @Column("score")
-    private Integer score;
+    private Integer score=0;
 
     /**
      * 用户答案

@@ -1,7 +1,9 @@
 package com.weiziplus.springboot.mapper.wx;
 
 import com.weiziplus.springboot.models.wx.WxTestScore;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface WxTestScoreMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -10,6 +12,8 @@ public interface WxTestScoreMapper {
     int insertSelective(WxTestScore record);
 
     WxTestScore selectByPrimaryKey(Long id);
+
+    WxTestScore selectByDicId(Long id);
 
     int updateByPrimaryKeySelective(WxTestScore record);
 

@@ -14,7 +14,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 /**
@@ -36,6 +38,18 @@ public class WxDictDataController {
 
     @Autowired
     WxDictRefService wxDictRefService ;
+
+    @ApiOperation(value = "查询单词意思")
+    @PostMapping("/queryWord")
+    @AuthTokenIgnore
+    public ResultUtils queryWord(String word)
+    {
+        log.info("queryWord:{}",word);
+        wxDictDataService.queryInsertWord(word);
+        return ResultUtils.success();
+    }
+
+
 
     @ApiOperation(value = "新增词典")
     @PostMapping("/addDict")
@@ -93,7 +107,7 @@ public class WxDictDataController {
     public ResultUtils<List<WxDictRefDto>> getDictData(WxDictRef data)
     {
         log.info("getDictData:{}",data);
-        return wxDictRefService.getDictDataByDictId(data);
+        return ResultUtils.success(wxDictRefService.getDictDataByDictId(data));
     }
 
     @ApiOperation(value = "获取词典列表")

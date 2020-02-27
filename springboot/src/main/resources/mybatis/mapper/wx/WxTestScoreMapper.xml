@@ -20,6 +20,15 @@
     from wx_test_score
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="selectByDicId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wx_test_score
+    where dic_id = #{dicId,jdbcType=BIGINT}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from wx_test_score
     where id = #{id,jdbcType=BIGINT}

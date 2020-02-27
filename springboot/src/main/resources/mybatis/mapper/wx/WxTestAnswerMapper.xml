@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.weiziplus.springboot.models.wx.WxTestAnswer">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="question_id" jdbcType="BIGINT" property="questionId" />
+    <result column="dic_id" jdbcType="VARCHAR" property="dicId" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="answer" jdbcType="VARCHAR" property="answer" />
     <result column="batch_time" jdbcType="VARCHAR" property="batchTime" />
@@ -18,10 +19,46 @@
     from wx_test_answer
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+
+  <select id="selecList" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer"
+          resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wx_test_answer
+    where 1=1
+    <if test="null != id and 0 != id">
+      id = #{id,jdbcType=BIGINT}
+    </if>
+    <if test="null != dicId and 0 != dicId">
+      dic_id = #{dicId,jdbcType=BIGINT}
+    </if>
+    <if test="questionId != null">
+      question_id = #{questionId,jdbcType=BIGINT}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer">
+    delete from wx_test_answer
+    where 1=1
+
+    <if test="null != id and 0 != id">
+      id = #{id,jdbcType=BIGINT}
+    </if>
+    <if test="null != dicId and 0 != dicId">
+      dic_id = #{dicId,jdbcType=BIGINT}
+    </if>
+    <if test="questionId != null">
+      question_id = #{questionId,jdbcType=BIGINT}
+    </if>
+  </delete>
+
+
+  <delete id="deleteByDicIdAndBatchTime" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer">
     delete from wx_test_answer
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.weiziplus.springboot.models.wx.WxTestAnswer">
     insert into wx_test_answer (id, question_id, openid, 
       answer, batch_time, create_time
