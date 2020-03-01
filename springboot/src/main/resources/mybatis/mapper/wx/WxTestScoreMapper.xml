@@ -33,6 +33,14 @@
     delete from wx_test_score
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
+
+
+  <delete id="deleteByDicId" parameterType="java.lang.Long">
+    delete from wx_test_score
+    where dic_id = #{dicId,jdbcType=BIGINT}
+  </delete>
+
   <insert id="insert" parameterType="com.weiziplus.springboot.models.wx.WxTestScore">
     insert into wx_test_score (id, dic_id, openid, 
       batch_time, score, answer, 

@@ -113,7 +113,7 @@ public class ResultUtils<T> implements Serializable {
      * @param msg
      * @return
      */
-    private static <T> ResultUtils<T> baseError(Integer code, String msg) {
+    public static <T> ResultUtils<T> baseError(Integer code, String msg) {
         return new ResultUtils<>(code, msg, null);
     }
 

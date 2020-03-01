@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface WxTestScoreMapper {
     int deleteByPrimaryKey(Long id);
 
+    int deleteByDicId(Long dicId);
+
     int insert(WxTestScore record);
 
     int insertSelective(WxTestScore record);

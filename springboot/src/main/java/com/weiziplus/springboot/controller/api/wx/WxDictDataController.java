@@ -1,5 +1,6 @@
 package com.weiziplus.springboot.controller.api.wx;
 
+import com.alibaba.druid.util.StringUtils;
 import com.weiziplus.springboot.interceptor.AuthTokenIgnore;
 import com.weiziplus.springboot.models.dto.WxDictRefDto;
 import com.weiziplus.springboot.models.vo.WxDictDataVo;
@@ -116,7 +117,12 @@ public class WxDictDataController {
     public ResultUtils<List<WxDict>> getDictList(WxDict data)
     {
         log.info("getDictList:{}",data);
-        return wxDictService.getList(data);
+        if(!StringUtils.isEmpty(data.getOpenid())){
+            return wxDictService.getList(data);
+        }else {
+            return ResultUtils.success();
+        }
+
     }
 
 }

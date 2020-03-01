@@ -29,6 +29,10 @@ global:
   #是否將异常详情展示给前端
   response-show-runtime-exception: true
   #
+  socreGraceA: 太棒了，你是妈妈的骄傲，爱你哦！！！
+  socreGraceB: 你已经很优秀了,加油！！！
+  socreGraceC: 进步很大，你会更棒的！！！
+  socreGraceD: 不要气馁，付出总会有回报的，好好背单词！！！
   word-list: "'abacus',
      'abandon',
      'abase',

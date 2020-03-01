@@ -1,5 +1,6 @@
 package com.weiziplus.springboot.controller.api.wx;
 
+import com.weiziplus.springboot.enums.ErrorCodeEnum;
 import com.weiziplus.springboot.interceptor.AuthTokenIgnore;
 import com.weiziplus.springboot.models.wx.WxDictData;
 import com.weiziplus.springboot.models.wx.WxTestAnswer;
@@ -98,10 +99,15 @@ public class WxTestingController {
     public ResultUtils<Integer> submitTest(@RequestBody WxTestAnswer answer)
     {
         log.info("submitTest param:{}",answer);
-        answer.setCreateTime(DateUtils.getNowDateTime());
-        int result =wxTestAnswerService.insert(answer);
-        log.info("submitTest result:{}",result);
-        return ResultUtils.success(result);
+        if(null!=answer&&null!=answer.getDicId()&&answer.getDicId().intValue()>0){
+            answer.setCreateTime(DateUtils.getNowDateTime());
+            int result =wxTestAnswerService.insert(answer);
+            log.info("submitTest result:{}",result);
+            return ResultUtils.success(result);
+        }else{
+            return ResultUtils.baseError(ErrorCodeEnum.ERROR_SUBIMT_TESTING.getCode(),ErrorCodeEnum.ERROR_SUBIMT_TESTING.getMsg());
+        }
+
     }
 
 
@@ -112,10 +118,24 @@ public class WxTestingController {
     {
         log.info("checkTestResult param:{}",answer);
         answer.setCreateTime(DateUtils.getNowDateTime());
-        WxTestScore result =wxTestScoreService.checkTestResult(answer.getDicId());
+        ResultUtils result = wxTestScoreService.checkTestResult(answer.getDicId());
         log.info("checkTestResult result:{}",result);
-        return ResultUtils.success(result);
+        return result;
     }
+
+    @ApiOperation(value = "重新测验")
+    @PostMapping("/reTesting")
+    @AuthTokenIgnore
+    public ResultUtils reTesting(@RequestBody WxTestAnswer answer)
+    {
+        log.info("reTesting param:{}",answer);
+        if(null!=answer&&null!=answer.getDicId()&&answer.getDicId().intValue()>0){
+            wxTestScoreService.reTesting(answer.getDicId());
+        }
+        return ResultUtils.success();
+    }
+
+//    checkTestOrNotUrl
 
 
 
