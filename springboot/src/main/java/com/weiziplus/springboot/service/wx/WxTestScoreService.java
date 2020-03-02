@@ -62,6 +62,10 @@ public class WxTestScoreService extends BaseService
             WxTestQuestion testQuestion = new WxTestQuestion();
             testQuestion.setDicId(dicId);
             List<WxTestQuestion> questList=wxTestQuestionMapper.selectByList(testQuestion);
+            if((null!=questList&&questList.size()<4)||null==questList){
+                log.info("词库还不具备测验能力:{}",dicId);
+                return ResultUtils.baseError(ErrorCodeEnum.ERROR_ZORE_QUESTION.getCode(),String.valueOf(questList.size()));
+            }
 
             WxTestQuestion question = new WxTestQuestion();
             int rightNum=0;

@@ -9,6 +9,7 @@ public enum ErrorCodeEnum {
 
     ERROR_ZERO_SCORE(901,"没有测验数据"),
     ERROR_UNFINISH_SCORE(902,"测验数据未填写完整"),
+    ERROR_ZORE_QUESTION(903,"词库还不具备测验能力"),
     ERROR_SUBIMT_TESTING(911,"提交测验结果失败");
     private Integer code;
     private String msg;
